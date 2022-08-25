@@ -36,11 +36,14 @@ function incializaCronometro() {
 
     campo.one("focus", function () {
         var cronometroID = setInterval(function () {
+            $("#botao-reiniciar").attr("disabled", true);
             tempoRestante--;
             $("#tempo-digitacao").text(tempoRestante);
             if (tempoRestante < 1) {
                 campo.attr("disabled", true);
+                $("#botao-reiniciar").attr("disabled", false);
                 clearInterval(cronometroID);
+                campo.addCalss("campo-desativado");
             }
         }, 1000);
     });
